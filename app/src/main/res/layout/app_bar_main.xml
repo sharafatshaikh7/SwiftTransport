@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.swifttransport.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="40dp"
+        app:srcCompat="@drawable/wallet" />
+
+    <TextView
+        android:text="Swift Transport "
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor"
+        android:background="@color/primary"
+        android:layout_gravity="bottom|end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</android.support.design.widget.CoordinatorLayout>
