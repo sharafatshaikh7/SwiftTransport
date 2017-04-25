@@ -23,26 +23,4 @@
 
     <include layout="@layout/content_main" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="40dp"
-        app:srcCompat="@drawable/wallet" />
-
-    <TextView
-        android:text="Swift Transport "
-        android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:textSize="18dp"
-        android:padding="5dp"
-        android:textStyle="bold"
-        android:textColor="@color/textcolor"
-        android:background="@color/primary"
-        android:layout_gravity="bottom|end"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
 </android.support.design.widget.CoordinatorLayout>

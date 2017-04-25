@@ -1,4 +1,4 @@
-package ConstantClasses;
+package com.swifttransport.ConstantClasses;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

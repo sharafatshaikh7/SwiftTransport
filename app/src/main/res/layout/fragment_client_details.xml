@@ -1,0 +1,211 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.swifttransport.Fragments.ClientDetailsFragment">
+
+    <com.swifttransport.ConstantClasses.RevealLayout
+        android:id="@+id/client_layout"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scroolview"
+            android:layout_width="match_parent"
+            android:background="@color/primary"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/inner_layout"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="@dimen/_2"
+                    android:background="@color/lightprimary"
+                    android:padding="@dimen/_5"
+                    android:gravity="center_vertical"
+                    android:id="@+id/test1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_20"
+                        android:gravity="center_horizontal"
+                        android:text="@string/EnterNewClient"/>
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/test1"
+                    android:id="@+id/inner_layout2"
+                    android:layout_marginTop="@dimen/_10"
+                    android:gravity="center_horizontal"
+                    android:layout_height="match_parent">
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:id="@+id/name_1"
+                        app:mtf_hasFocus="false"
+                        android:layout_width="@dimen/_320"
+                        android:layout_height="wrap_content"
+                        app:mtf_image="@drawable/profile">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/ClientName"
+                            android:id="@+id/edt_client_name"
+                            android:drawableTint="@color/primary"
+                            android:textColor="@color/primary"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField>
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:id="@+id/add_1"
+                        app:mtf_hasFocus="false"
+                        android:layout_below="@+id/name_1"
+                        android:layout_width="@dimen/_320"
+                        android:layout_height="wrap_content"
+                        app:mtf_image="@drawable/profile">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/edt_client_occupation"
+                            android:hint="@string/Occupation"
+                            android:drawableTint="@color/primary"
+                            android:textColor="@color/primary"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField>
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:id="@+id/salary_1"
+                        android:layout_below="@+id/add_1"
+                        app:mtf_hasFocus="false"
+                        android:layout_width="@dimen/_320"
+                        android:layout_height="wrap_content"
+                        app:mtf_image="@drawable/profile">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:clickable="true"
+                            android:hint="@string/StartBusinessData"
+                            android:id="@+id/edt_client_date"
+                            android:drawableTint="@color/primary"
+                            android:textColor="@color/primary"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/down"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_30"
+                    android:layout_below="@+id/inner_layout2">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="@dimen/_120"
+                        app:cardCornerRadius="@dimen/_10"
+                        app:cardElevation="@dimen/_5"
+                        android:padding="@dimen/_10"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/btn_client_submit"
+                            android:background="@drawable/buttonback"
+                            android:textColor="@color/primary"
+                            android:text="@string/Submit" />
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </com.swifttransport.ConstantClasses.RevealLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Basic_Client_layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_80"
+                android:clipToPadding="false"
+                android:id="@+id/client_details_list">
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/layClientDetailsShowing"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/No_Data_To_Show"
+                android:textSize="@dimen/_20"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/aleartText"
+                android:textColor="@color/primary"
+                android:gravity="center"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/aleart2"
+                android:tint="@color/primary"
+                android:layout_toRightOf="@+id/aleartText"
+                android:contentDescription="@string/image" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_client_fab"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/profile" />
+
+
+</RelativeLayout>

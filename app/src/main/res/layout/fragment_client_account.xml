@@ -1,0 +1,151 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.swifttransport.Fragments.ClientAccountFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="@dimen/_5"
+            android:layout_marginRight="@dimen/_10"
+            android:layout_marginLeft="@dimen/_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30"
+            app:cardCornerRadius="@dimen/_10"
+            app:cardElevation="@dimen/_5">
+
+            <com.swifttransport.customeViews.EditTextCustom
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:layout_height="match_parent"
+                android:textColor="@color/primary"
+                android:textSize="18dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:id="@+id/edt_client_from_to"/>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="@dimen/_10"
+            android:layout_marginRight="@dimen/_10"
+            android:layout_marginLeft="@dimen/_10"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30"
+            app:cardCornerRadius="@dimen/_10"
+            app:cardElevation="@dimen/_5">
+
+            <com.swifttransport.customeViews.EditTextCustom
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/primary"
+                android:textSize="18dp"
+                android:clickable="true"
+                android:background="@null"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:id="@+id/edt_client_to_date"/>
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginTop="@dimen/_10"
+                android:layout_marginRight="@dimen/_10"
+                android:layout_marginLeft="@dimen/_10"
+                app:cardCornerRadius="@dimen/_10"
+                app:cardElevation="@dimen/_5"
+                android:layout_marginBottom="@dimen/_10"
+                android:layout_height="@dimen/_30">
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:layout_width="match_parent"
+                    android:id="@+id/spi_client_paid_or_not"
+                    android:background="@drawable/newspinnerback"
+                    android:layout_height="match_parent">
+                </com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_10"
+                android:layout_marginRight="@dimen/_10"
+                android:layout_marginLeft="@dimen/_10"
+                android:layout_marginBottom="@dimen/_10"
+                app:cardCornerRadius="@dimen/_10"
+                app:cardElevation="@dimen/_5"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_30">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:textColor="@color/white"
+                    android:text="@string/Submit"
+                    android:background="@drawable/buttonback2"
+                    android:layout_height="match_parent" />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/client_account_list">
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent"
+                android:id="@+id/clientAccountList">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/primary"
+                    android:text="No Data To Show"/>
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -5,4 +5,73 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_client_details">ClientDetails</string>
+    <string name="Name">Name</string>
+    <string name="Address">Address</string>
+    <string name="Salary">Salary</string>
+    <string name="JoiningDate">Joining Date</string>
+    <string name="Submit">Submit</string>
+    <string name="ClientName">Client Name</string>
+    <string name="Occupation">Occupation</string>
+    <string name="StartBusinessData">Date</string>
+    <string name="EnterNewClient">Enter New client Details</string>
+    <string name="EnterNewVehicle">Enter New Vehicel Details</string>
+    <string name="VehicelNumber">Vehicel Number</string>
+    <string name="BuyingDate">Buying Date</string>
+    <string name="InsuranceDate">Insurance Date</string>
+    <string name="PucDate">Puc Date</string>
+    <string name="EnterNewExpenses">Enter New Expenses</string>
+    <string name="Date">Date</string>
+    <string name="ExpensesType">Expenses Type</string>
+    <string name="DriverName">Driver Name</string>
+    <string name="Discription">Discription</string>
+    <string name="Amount">Amount</string>
+    <string name="FromLocation">From Location</string>
+    <string name="ToLocation">To Location</string>
+    <string name="Fare">Fare</string>
+    <string name="PaidorNot">Paid or Not</string>
+    <string name="EnterNewFareEntry">Enter New Fare Entry</string>
+
+
+    <string name="DriverName1">Driver Name :</string>
+    <string name="DriverAdd1">Driver Address :</string>
+    <string name="DriverSalaray1">Driver Salary :</string>
+    <string name="DriverJoiningDate1">Driver Joining Date :</string>
+
+    <string name="ClientName1">Client Name :</string>
+    <string name="ClientOccupation1">Client Occupation :</string>
+    <string name="ClientJpining1">Start Business From :</string>
+
+    <string name="more">more</string>
+    <string name="less">less</string>
+    <string name="No_Data_To_Show">No Data To Show</string>
+    <string name="image">image</string>
+
+    <string name="VehicelNo1">Vehicel No:</string>
+    <string name="BuyingDate1">Buying Date :</string>
+    <string name="InsuranceDate1">Insurance Date :</string>
+    <string name="Pucdate1">Puc Date :</string>
+
+    <string name="ExpensesDate1">Expenses Date :</string>
+    <string name="ExpensesType1">Expenses Type :</string>
+    <string name="Discription1">Discription :</string>
+    <string name="Amount1">Amount :</string>
+
+
+    <string-array name="ExpensesType">
+        <item>Select Expenses Type</item>
+        <item>Petrol Expenses</item>
+        <item>Driver Expenses</item>
+        <item>Other Expenses</item>
+    </string-array>
+
+    <string-array name="PaidorNot">
+        <item>Please Select Paid or Not</item>
+        <item>Fare Paid</item>
+        <item>Fare Not Paid</item>
+    </string-array>
+
 </resources>

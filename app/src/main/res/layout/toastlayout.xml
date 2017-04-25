@@ -22,7 +22,7 @@
         android:layout_toRightOf="@+id/toastImage"
         android:textSize="20dp"
         android:typeface="monospace"
-        android:textColor="@color/text_color"
+        android:textColor="@color/white"
         android:text="Massege"/>
 
 </LinearLayout>

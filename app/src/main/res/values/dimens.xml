@@ -9,4 +9,27 @@
 
 
 
+    <dimen name="_2">2dp</dimen>
+    <dimen name="_5">5dp</dimen>
+    <dimen name="_10">10dp</dimen>
+    <dimen name="_12">12dp</dimen>
+    <dimen name="_15">15dp</dimen>
+    <dimen name="_20">20dp</dimen>
+    <dimen name="_25">25dp</dimen>
+    <dimen name="_30">30dp</dimen>
+    <dimen name="_40">40dp</dimen>
+    <dimen name="_50">50dp</dimen>
+    <dimen name="_60">60dp</dimen>
+    <dimen name="_70">70dp</dimen>
+    <dimen name="_80">80dp</dimen>
+    <dimen name="_90">90dp</dimen>
+    <dimen name="_100">100dp</dimen>
+    <dimen name="_110">110dp</dimen>
+    <dimen name="_120">120dp</dimen>
+    <dimen name="_320">320dp</dimen>
+
+
+
+
+
 </resources>
