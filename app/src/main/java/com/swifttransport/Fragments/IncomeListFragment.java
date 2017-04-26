@@ -1,6 +1,7 @@
 package com.swifttransport.Fragments;
 
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -24,7 +26,9 @@ import com.swifttransport.R;
 import com.swifttransport.dbconfig.DataBaseCon;
 import com.swifttransport.dbconfig.DbHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 /**
@@ -127,6 +131,29 @@ public class IncomeListFragment extends Fragment implements View.OnClickListener
         btn_Income_Submit=(Button)view.findViewById(R.id.btn_Income_submit);
         btn_Income_Submit.setOnClickListener(this);
 
+        final Calendar date=Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener dialog=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                date.set(Calendar.YEAR,year);
+                date.set(Calendar.MONTH,month);
+                date.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
+                SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+                edt_Income_date.setText(sdf.format(date.getTime()));
+
+            }
+        };
+
+        edt_Income_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new DatePickerDialog(mCtx,dialog,date.get(Calendar.YEAR),
+                        date.get(Calendar.MONTH),date.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
     }
 
     private void SettingData(){
@@ -199,13 +226,14 @@ public class IncomeListFragment extends Fragment implements View.OnClickListener
 
             String names[]={DbHelper.DATE,DbHelper.CLIENT_NAME,DbHelper.FROM_LOCATION,DbHelper.TO_LOCATION,DbHelper.VEHICEL_NUMBER,
             DbHelper.DRIVER_NAME,DbHelper.FARE_RENT,DbHelper.PAID_OR_NOT};
-            String values[]={edt_Income_date.getText().toString(),Spi_Income_ClientName.getSelectedItem().toString(),edt_Income_fromlocation.getText().toString(),
-            edt_Income_tolocation.getText().toString(),Spi_Income_VehicelNo.getSelectedItem().toString(),Spi_Income_DriverName.getSelectedItem().toString(),
-            edt_Income_fare.getText().toString(),Spi_Income_PaidorNot.getSelectedItem().toString()};
+            String values[]={edt_Income_date.getText().toString(),Spi_Income_ClientName.getSelectedItem().toString(),
+                    edt_Income_fromlocation.getText().toString(),edt_Income_tolocation.getText().toString(),Spi_Income_VehicelNo.getSelectedItem().toString(),
+                    Spi_Income_DriverName.getSelectedItem().toString(),edt_Income_fare.getText().toString(),Spi_Income_PaidorNot.getSelectedItem().toString()};
 
             boolean isInserted=DataBaseCon.getInstance(mCtx).insert(DbHelper.TABLE_CLIENT,values,names) > 0;
 
             Log.e("isInserted",String.valueOf(isInserted));
+            customeToast.CustomeToastSetting(mCtx,"New Fair Inserted Succesfully");
 
             clear();
         }
