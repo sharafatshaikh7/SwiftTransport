@@ -18,12 +18,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.swifttransport.ConstantClasses.CustomeToast;
+import com.swifttransport.DataSource.ExpensesDetails_DataSource;
+import com.swifttransport.DataSource.IncomeDetails_DataSource;
 import com.swifttransport.R;
 import com.swifttransport.dbconfig.DataBaseCon;
 import com.swifttransport.dbconfig.DbHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 
 /**
@@ -38,6 +43,10 @@ public class BusinessStatusFragment extends Fragment implements View.OnClickList
     CustomeToast customeToast=new CustomeToast();
     Calendar calendar;
     private static int dialog=0;
+    Calendar fromcal,tocal;
+    public static int pos=-1;
+    ArrayList<IncomeDetails_DataSource> arrayList_IncomeDetails=new ArrayList<>();
+    ArrayList<ExpensesDetails_DataSource> arrayList_ExpensesList=new ArrayList<>();
 
     public BusinessStatusFragment() {
         // Required empty public constructor
@@ -76,10 +85,21 @@ public class BusinessStatusFragment extends Fragment implements View.OnClickList
 
                 SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MM-yyyy");
 
-                if(dialog == 1)
+                if(dialog == 1){
                     edtfromdate.setText(simpleDateFormat.format(calendar.getTime()));
-                else if(dialog == 2)
+                    fromcal=Calendar.getInstance();
+                    fromcal.set(Calendar.YEAR,i);
+                    fromcal.set(Calendar.MONTH,i1);
+                    fromcal.set(Calendar.DAY_OF_MONTH,i2);
+
+                } else if(dialog == 2){
                     edttodate.setText(simpleDateFormat.format(calendar.getTime()));
+                    tocal=Calendar.getInstance();
+                    tocal.set(Calendar.YEAR,i);
+                    tocal.set(Calendar.MONTH,i1);
+                    tocal.set(Calendar.DAY_OF_MONTH,i2);
+                }
+
             }
         };
 
@@ -121,10 +141,21 @@ public class BusinessStatusFragment extends Fragment implements View.OnClickList
                 if(position == 0){
                     spiSubType.setFocusable(false);
                     spiSubType.setEnabled(false);
+                    pos=-1;
                 }else if(position == 1){
+                    /*
+                     * m taking the position in the varible
+                     * bcz after getting the dta in cursor check it expenses data or income data
+                     */
+                    pos=position;
                     IncomeTypeLoad();
                 }else if(position == 2){
                     ExpensesTypeLoad();
+                    /*
+                     * m taking the position in the varible
+                     * bcz after getting the dta in cursor check it expenses data or income data
+                     */
+                    pos=position;
                 }
             }
             //auto generated code
@@ -141,7 +172,7 @@ public class BusinessStatusFragment extends Fragment implements View.OnClickList
         spiSubType.setEnabled(true);
     }
     private void IncomeTypeLoad(){
-        String [] list={"Please Select","Fare Paid","Fare Not Paid"};
+        String [] list={"Please Select","All","Fare Paid","Fare Not Paid"};
         ArrayAdapter adapter=new ArrayAdapter(mCtx,android.R.layout.simple_list_item_1,list);
         spiSubType.setAdapter(adapter);
         spiSubType.setFocusable(true);
@@ -155,9 +186,15 @@ public class BusinessStatusFragment extends Fragment implements View.OnClickList
         }else if(edttodate.getText().toString().equals("") && edttodate.getText().toString().length() == 0){
             edttodate.setError("Please Enter Date");
         }else if(spiType.getSelectedItemPosition() == 0){
-            customeToast.CustomeToastSetting(mCtx,"Please Enter Search Type");
+            customeToast.CustomeToastSetting(mCtx,"Please Enter Search Type ");
+        }else if(pos != -1 && spiSubType.getSelectedItemPosition() == 0){
+            customeToast.CustomeToastSetting(mCtx, "Please Select SubType ");
         }else{
 
+            //clear the arraylist here
+            //bcz it store repeated data
+            arrayList_IncomeDetails.clear();
+            arrayList_ExpensesList.clear();
             String tableName="";
             String subtype="";
             if(spiType.getSelectedItemPosition() == 1){
@@ -174,8 +211,72 @@ public class BusinessStatusFragment extends Fragment implements View.OnClickList
                     edttodate.getText().toString(),spiType.getSelectedItem().toString(),subtype);
             if(cursor != null && cursor.getCount() > 0){
                 Log.e("StatusCursorCount",String.valueOf(cursor.getCount()));
+                cursor.moveToFirst();
+                do{
+                    String date1=cursor.getString(cursor.getColumnIndex(DbHelper.DATE));
+                    Calendar calcheck = Calendar.getInstance();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy");
+                    Log.e("FromLocation",String.valueOf(sdf.format(fromcal.getTime())));
+                    Log.e("ToLocation",String.valueOf(sdf.format(tocal.getTime())));
+                    try {
+                        calcheck.setTime(sdf.parse(date1));
+                        if(calcheck.getTime().equals(fromcal.getTime()))
+                            Log.e("equal",String.valueOf(calcheck.getTime()));
+
+                        if(calcheck.getTime().equals(tocal.getTime()))
+                            Log.e("equalto",String.valueOf(calcheck.getTime()));
+
+                        if((calcheck.getTime().equals(fromcal.getTime()) || calcheck.getTime().after(fromcal.getTime())  ) &&
+                                (calcheck.getTime().before(tocal.getTime()) || calcheck.getTime().equals(tocal.getTime()) ) ){
+                            if(pos == 1){
+                                String Data=cursor.getString(cursor.getColumnIndex(DbHelper.DATE));
+                                String ClientName=cursor.getString(cursor.getColumnIndex(DbHelper.CLIENT_NAME));
+                                String FromLocatio=cursor.getString(cursor.getColumnIndex(DbHelper.FROM_LOCATION));
+                                String ToLocation=cursor.getString(cursor.getColumnIndex(DbHelper.TO_LOCATION));
+                                String VehicelNumber=cursor.getString(cursor.getColumnIndex(DbHelper.VEHICEL_NUMBER));
+                                String DriverName=cursor.getString(cursor.getColumnIndex(DbHelper.DRIVER_NAME));
+                                String Fare=cursor.getString(cursor.getColumnIndex(DbHelper.FARE_RENT));
+                                String PaidorNot=cursor.getString(cursor.getColumnIndex(DbHelper.PAID_OR_NOT));
+                                arrayList_IncomeDetails.add(new IncomeDetails_DataSource(Data,ClientName,FromLocatio,ToLocation,
+                                        VehicelNumber,DriverName,Fare,PaidorNot));
+                            }else if(pos == 2){
+                                String exp_date=cursor.getString(cursor.getColumnIndex(DbHelper.DATE));
+                                String exp_type=cursor.getString(cursor.getColumnIndex(DbHelper.EXPENSES_TYPE));
+                                String drivername=cursor.getString(cursor.getColumnIndex(DbHelper.DRIVER_NAME));
+                                String discription=cursor.getString(cursor.getColumnIndex(DbHelper.DISCRIPTION));
+                                String amount=cursor.getString(cursor.getColumnIndex(DbHelper.AMOUNT));
+
+                                arrayList_ExpensesList.add(new ExpensesDetails_DataSource(exp_date,exp_type,drivername,discription,amount));
+
+                            }else{
+                                Log.e("Bas Kar Ab Kya Jan Lega",String.valueOf(pos));
+                            }
+
+                            String date2=cursor.getString(cursor.getColumnIndex(DbHelper.DATE));
+                            Log.e("date2",date2);
+                        }else{
+                            String date3=cursor.getString(cursor.getColumnIndex(DbHelper.DATE));
+                            Log.e("date3",date3);
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        Log.e("Hell0","from catch");
+                    }
+                }while (cursor.moveToNext());
+
+                if(pos == 1)
+                    SettingIncomeDataInList(arrayList_IncomeDetails);
+                else
+                    SettingExpensesDataInList(arrayList_ExpensesList);
             }
         }
+    }
+
+    private void SettingIncomeDataInList(ArrayList<IncomeDetails_DataSource> mylist){
+        Log.e("SettingIncomeDataInList",String.valueOf(mylist.size()));
+    }
+    private void SettingExpensesDataInList(ArrayList<ExpensesDetails_DataSource> mylist){
+        Log.e("SettingExpensesDataList",String.valueOf(mylist.size()));
     }
 
     @Override

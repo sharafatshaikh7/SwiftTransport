@@ -81,13 +81,22 @@ public class DataBaseCon {
         String where1 = null;
         try {
             if(Type.equals("Incomes")){
-                query = "select * from "  + tbl;
-            }else if(Type.equals("Expenses")){
                 if(!Subtype.equals("")){
                     if(Subtype.equals("All")){
                         query = "select * from "  + tbl;
+                    }else{
+                        where1=" where "+DbHelper.PAID_OR_NOT+" = '"+Subtype+"' ";
+                        query = "select * from " + tbl + where1;
+                    }
+                }else{
+                    query = "select * from "  + tbl;
+                }
+            }else if(Type.equals("Expenses")){
+                if(!Subtype.equals("")){
+                    if(Subtype.equals("All Expenses")){
+                        query = "select * from "  + tbl;
                     }else {
-                        where1=" where "+DbHelper.EXPENSES_TYPE+" = "+Subtype+" ";
+                        where1=" where "+DbHelper.EXPENSES_TYPE+" = '"+Subtype+"' ";
                         query = "select * from " + tbl + where1;
                     }
                 }else{
