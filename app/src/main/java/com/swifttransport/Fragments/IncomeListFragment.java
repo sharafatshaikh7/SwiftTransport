@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.swifttransport.Adapter.IncomeDetails_Adapter;
 import com.swifttransport.ConstantClasses.CustomeToast;
 import com.swifttransport.ConstantClasses.RevealLayout;
 import com.swifttransport.DataSource.IncomeDetails_DataSource;
@@ -44,6 +47,7 @@ public class IncomeListFragment extends Fragment implements View.OnClickListener
     Button btn_Income_Submit;
     String chekingAdd="";
     Context mCtx;
+    RecyclerView IncomeRecyclearView;
     CustomeToast customeToast=new CustomeToast();
     ArrayList<IncomeDetails_DataSource> arrayList_IncomeDetails=new ArrayList<>();
     ArrayList<String> arrayList_ClientName=new ArrayList<>();
@@ -129,6 +133,7 @@ public class IncomeListFragment extends Fragment implements View.OnClickListener
         edt_Income_fare=(EditText)view.findViewById(R.id.edt_income_fare);
         Spi_Income_PaidorNot=(Spinner)view.findViewById(R.id.spi_Income_PaidorNot);
         btn_Income_Submit=(Button)view.findViewById(R.id.btn_Income_submit);
+        IncomeRecyclearView=(RecyclerView)view.findViewById(R.id.income_details_list);
         btn_Income_Submit.setOnClickListener(this);
 
         final Calendar date=Calendar.getInstance();
@@ -230,7 +235,7 @@ public class IncomeListFragment extends Fragment implements View.OnClickListener
                     edt_Income_fromlocation.getText().toString(),edt_Income_tolocation.getText().toString(),Spi_Income_VehicelNo.getSelectedItem().toString(),
                     Spi_Income_DriverName.getSelectedItem().toString(),edt_Income_fare.getText().toString(),Spi_Income_PaidorNot.getSelectedItem().toString()};
 
-            boolean isInserted=DataBaseCon.getInstance(mCtx).insert(DbHelper.TABLE_CLIENT,values,names) > 0;
+            boolean isInserted=DataBaseCon.getInstance(mCtx).insert(DbHelper.TABLE_INCOME,values,names) > 0;
 
             Log.e("isInserted",String.valueOf(isInserted));
             customeToast.CustomeToastSetting(mCtx,"New Fair Inserted Succesfully");
@@ -248,6 +253,37 @@ public class IncomeListFragment extends Fragment implements View.OnClickListener
         Spi_Income_DriverName.setSelection(0);
         edt_Income_fare.setText("");
         Spi_Income_PaidorNot.setSelection(0);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Cursor incomecursor=DataBaseCon.getInstance(mCtx).getAllDataFromTable(DbHelper.TABLE_INCOME);
+        if(incomecursor != null && incomecursor.getCount() > 0){
+            arrayList_IncomeDetails.clear();
+            Log.e("incomecursorCount",String.valueOf(incomecursor.getCount()));
+            incomecursor.moveToFirst();
+            do{
+                String Data=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.DATE));
+                String ClientName=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.CLIENT_NAME));
+                String FromLocatio=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.FROM_LOCATION));
+                String ToLocation=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.TO_LOCATION));
+                String VehicelNumber=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.VEHICEL_NUMBER));
+                String DriverName=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.DRIVER_NAME));
+                String Fare=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.FARE_RENT));
+                String PaidorNot=incomecursor.getString(incomecursor.getColumnIndex(DbHelper.PAID_OR_NOT));
+                arrayList_IncomeDetails.add(new IncomeDetails_DataSource(Data,ClientName,FromLocatio,ToLocation,
+                         VehicelNumber,DriverName,Fare,PaidorNot));
+
+            }while (incomecursor.moveToNext());
+            RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(mCtx);
+            IncomeRecyclearView.setLayoutManager(layoutManager);
+            IncomeDetails_Adapter adapter=new IncomeDetails_Adapter(mCtx,arrayList_IncomeDetails);
+            IncomeRecyclearView.setAdapter(adapter);
+        }else{
+            mLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

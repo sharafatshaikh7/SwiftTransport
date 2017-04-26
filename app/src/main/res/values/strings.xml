@@ -61,6 +61,9 @@
     <string name="Amount1">Amount :</string>
     <string name="Fare1">Fare :</string>
     <string name="Date1">Date :</string>
+    <string name="FromLocation1">From Location :</string>
+    <string name="ToLocation1">To Location :</string>
+    <string name="VehicelNumber1">Vehicel Number :</string>
 
 
     <string-array name="ExpensesType">
@@ -72,6 +75,26 @@
 
     <string-array name="PaidorNot">
         <item>Please Select Paid or Not</item>
+        <item>Fare Paid</item>
+        <item>Fare Not Paid</item>
+    </string-array>
+
+    <string-array name="StatusType">
+        <item>Please Select</item>
+        <item>Incomes</item>
+        <item>Expenses</item>
+    </string-array>
+
+    <string-array name="ExpensesType2">
+        <item>Please Select</item>
+        <item>All Expenses</item>
+        <item>Petrol Expenses</item>
+        <item>Driver Expenses</item>
+        <item>Other Expenses</item>
+    </string-array>
+
+    <string-array name="IncomeType">
+        <item>Please Select</item>
         <item>Fare Paid</item>
         <item>Fare Not Paid</item>
     </string-array>

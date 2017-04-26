@@ -76,6 +76,31 @@ public class DataBaseCon {
         return dbHelper.rawQuery(query);
     }
 
+    public Cursor fetchForBusinessStatus(String tbl, String fromdate,String todate,String Type,String Subtype) {
+        String query = null;
+        String where1 = null;
+        try {
+            if(Type.equals("Incomes")){
+                query = "select * from "  + tbl;
+            }else if(Type.equals("Expenses")){
+                if(!Subtype.equals("")){
+                    if(Subtype.equals("All")){
+                        query = "select * from "  + tbl;
+                    }else {
+                        where1=" where "+DbHelper.EXPENSES_TYPE+" = "+Subtype+" ";
+                        query = "select * from " + tbl + where1;
+                    }
+                }else{
+                    query = "select * from "  + tbl;
+                }
+            }
+            Log.i("TAG", "query :" + query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dbHelper.rawQuery(query);
+    }
+
     public int getCountOfRows(String tbl) {
         int count = 0;
         try {
