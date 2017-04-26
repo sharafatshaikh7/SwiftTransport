@@ -59,6 +59,8 @@
     <string name="ExpensesType1">Expenses Type :</string>
     <string name="Discription1">Discription :</string>
     <string name="Amount1">Amount :</string>
+    <string name="Fare1">Fare :</string>
+    <string name="Date1">Date :</string>
 
 
     <string-array name="ExpensesType">
