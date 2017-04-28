@@ -6,6 +6,8 @@ package com.swifttransport.DataSource;
 
 public class DriverDetails_DataSource {
 
+    //getter setter class
+
     String driver_name;
     String driver_add;
     String driver_salary;

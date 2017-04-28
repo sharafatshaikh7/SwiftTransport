@@ -64,6 +64,10 @@
     <string name="FromLocation1">From Location :</string>
     <string name="ToLocation1">To Location :</string>
     <string name="VehicelNumber1">Vehicel Number :</string>
+    <string name="Total">Total :</string>
+    <string name="fromdate">From Date</string>
+    <string name="todate">To date</string>
+    <string name="status">Status</string>
 
 
     <string-array name="ExpensesType">
@@ -75,6 +79,14 @@
 
     <string-array name="PaidorNot">
         <item>Please Select Paid or Not</item>
+        <item>Fare Paid</item>
+        <item>Fare Not Paid</item>
+    </string-array>
+
+
+    <string-array name="PaidorNot2">
+        <item>Please Select</item>
+        <item>All</item>
         <item>Fare Paid</item>
         <item>Fare Not Paid</item>
     </string-array>

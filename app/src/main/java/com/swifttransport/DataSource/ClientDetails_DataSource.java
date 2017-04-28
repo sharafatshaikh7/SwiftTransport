@@ -6,6 +6,8 @@ package com.swifttransport.DataSource;
 
 public class ClientDetails_DataSource {
 
+    //gatter setter class
+
     String Client_Name;
     String Client_Occupation;
     String Client_StartBusines;

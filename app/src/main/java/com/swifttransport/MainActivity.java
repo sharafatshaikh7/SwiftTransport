@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
+        // when activity in created this fragment is attached
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.MainFrame,new MainFragment());
         fragmentTransaction.commit();
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    //select image dialog
     private void selectImage() {
         final CharSequence[] items = { "Take Photo", "Choose from Gallery", "Cancel" };
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -180,6 +181,7 @@ public class MainActivity extends AppCompatActivity
         builder.show();
     }
 
+    //activity result to set image on image view
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -239,10 +241,10 @@ public class MainActivity extends AppCompatActivity
                 profileImage.setImageBitmap(bitmap);
                 PreferenceServices.getInstance(MainActivity.this).saveProfileImage(BitMapToString(bitmap));
             }
-
         }
     }
 
+    //convert the bitmap to String
     private String BitMapToString(Bitmap bitmap) {
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
@@ -261,12 +263,13 @@ public class MainActivity extends AppCompatActivity
 //        return imageEncoded;
 //    }
 
+    //String to bitmap convertion
     public static Bitmap StringTobitmap(String input) {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
-
+    //change fragment class
     private void ChangeFragment(Fragment fragment,String key,String value){
 
         Bundle bundle=new Bundle();

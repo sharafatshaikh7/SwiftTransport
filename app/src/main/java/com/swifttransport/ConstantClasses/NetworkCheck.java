@@ -13,6 +13,7 @@ public class NetworkCheck {
 
     Context mCtx;
 
+    //for checking network connection
     public NetworkCheck(Context context)
     {
         mCtx=context;

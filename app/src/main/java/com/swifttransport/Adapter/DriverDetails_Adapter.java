@@ -21,16 +21,18 @@ import java.util.ArrayList;
 
 public class DriverDetails_Adapter extends RecyclerView.Adapter<DriverDetails_Adapter.MyviewHolder>{
 
+    //arraylist of class
     ArrayList<DriverDetails_DataSource> arrayList=new ArrayList<>();
     Context mCtx;
     public static int lastPosition=-1;
 
-
+    //constructor
     public DriverDetails_Adapter(Context context,ArrayList<DriverDetails_DataSource> mylist){
         this.arrayList=mylist;
         this.mCtx=context;
     }
 
+    //view holder class
     @Override
     public MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -39,6 +41,7 @@ public class DriverDetails_Adapter extends RecyclerView.Adapter<DriverDetails_Ad
         return new MyviewHolder(itemview);
     }
 
+    //bind view
     @Override
     public void onBindViewHolder(MyviewHolder holder, int position) {
 
@@ -49,6 +52,9 @@ public class DriverDetails_Adapter extends RecyclerView.Adapter<DriverDetails_Ad
         holder.txtsalary.setText(driverDetails_dataSource.getDriver_salary());
         holder.txtjoiningdate.setText(driverDetails_dataSource.getDriver_joining_date());
 
+        //animation setting
+        //up_from_bottom and bottom from up in resouurce file
+        //in drawable
         Animation animation = AnimationUtils.loadAnimation(mCtx,
                 (position > lastPosition) ? R.anim.up_from_bottom
                         : R.anim.down_from_top);
@@ -57,12 +63,14 @@ public class DriverDetails_Adapter extends RecyclerView.Adapter<DriverDetails_Ad
 
     }
 
+    //clear animation
     @Override
     public void onViewDetachedFromWindow(MyviewHolder holder) {
         super.onViewDetachedFromWindow(holder);
         holder.itemView.clearAnimation();
     }
 
+    //count total size of array
     @Override
     public int getItemCount() {
         return arrayList.size();

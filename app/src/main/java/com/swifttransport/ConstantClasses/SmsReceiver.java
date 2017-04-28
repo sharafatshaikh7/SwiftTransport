@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 public class SmsReceiver extends BroadcastReceiver {
 
+    //not used class
     private static SmsListener mListener;
     public static final String OTP_REGEX = "[0-9]{1,7}";
 

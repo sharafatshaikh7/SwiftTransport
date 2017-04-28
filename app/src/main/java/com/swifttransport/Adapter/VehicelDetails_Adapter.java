@@ -22,11 +22,12 @@ import java.util.ArrayList;
 
 public class VehicelDetails_Adapter extends RecyclerView.Adapter<VehicelDetails_Adapter.MyviewHolder>{
 
+    //arraylist of class
     ArrayList<Vehicel_Details_DataSource> arrayList=new ArrayList<>();
     Context mCtx;
     public static int lastPosition=-1;
 
-
+    //constructor
     public VehicelDetails_Adapter(Context context, ArrayList<Vehicel_Details_DataSource> mylist){
         this.arrayList=mylist;
         this.mCtx=context;

@@ -6,6 +6,8 @@ package com.swifttransport.DataSource;
 
 public class IncomeDetails_DataSource {
 
+    //getter setter class
+
     String Data;
     String ClientName;
     String FromLocatio;

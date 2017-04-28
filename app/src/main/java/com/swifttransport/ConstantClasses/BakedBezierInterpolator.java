@@ -7,6 +7,9 @@ import android.view.animation.Interpolator;
 */
 class BakedBezierInterpolator implements Interpolator {
 
+    //for revel layout custome class
+    //dont change anythig here
+
     /**
      * Lookup table values.
      * Generated using a Bezier curve from (0,0) to (1,1) with control points:

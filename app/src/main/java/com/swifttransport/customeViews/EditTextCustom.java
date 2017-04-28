@@ -16,6 +16,8 @@ import com.swifttransport.R;
 
 public class EditTextCustom extends EditText {
 
+    //custome edittext
+
     public EditTextCustom(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         setCustomFont(context, attrs);

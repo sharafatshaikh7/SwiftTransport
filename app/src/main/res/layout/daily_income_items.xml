@@ -113,8 +113,41 @@
 
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/daily_income_details_salary_lay21"
                 android:layout_below="@+id/daily_income_details_salary_lay"
+                android:weightSum="4"
+                android:layout_marginTop="@dimen/_2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_daily_income_paidornot1"
+                    android:layout_weight="1.8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:typeface="monospace"
+                    android:text="@string/status"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/txt_daily_income_paidornot"
+                    android:layout_weight="2.2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:typeface="monospace"
+                    android:text="@string/status"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/daily_income_details_salary_lay21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible"

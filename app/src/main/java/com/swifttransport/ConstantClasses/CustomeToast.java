@@ -15,6 +15,7 @@ import com.swifttransport.R;
 //custome toast class
 public class CustomeToast {
 
+    //custome toast class
     public void CustomeToastSetting(Context context,String text){
         Toast toast=new Toast(context);
         //setting lenght long
@@ -23,6 +24,7 @@ public class CustomeToast {
         //setting custome layout
         View view=inflater.inflate(R.layout.toastlayout,null);
         TextView textView=(TextView)view.findViewById(R.id.toastTextView);
+        //setting massege
         textView.setText(text);
         toast.setView(view);
         toast.show();

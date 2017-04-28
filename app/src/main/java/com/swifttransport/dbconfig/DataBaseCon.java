@@ -22,6 +22,8 @@ public class DataBaseCon {
         }
     }
 
+    //the only reason of making the class
+    //at a time only one instance call this class
 
     public static synchronized DataBaseCon getInstance(Context ctx) {
 
@@ -69,6 +71,21 @@ public class DataBaseCon {
         String query = null;
         try {
             query = "select * from " + tbl + where;
+            Log.i("TAG", "query :" + query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dbHelper.rawQuery(query);
+    }
+
+    public Cursor fetchClientDetails(String tbl, String clientname,String subtype) {
+        String query = null;
+        try {
+            if(subtype.equals("All")){
+                query = "select * from " + tbl + " where "+DbHelper.CLIENT_NAME+" = '"+clientname+"'";
+            }else{
+                query = "select * from " + tbl + " where "+DbHelper.CLIENT_NAME+" = '"+clientname+"' and "+DbHelper.PAID_OR_NOT+" = '"+subtype+"' ";
+            }
             Log.i("TAG", "query :" + query);
         } catch (Exception e) {
             e.printStackTrace();

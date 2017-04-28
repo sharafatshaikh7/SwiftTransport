@@ -16,6 +16,9 @@ import com.swifttransport.R;
  */
 public class DbHelper extends SQLiteOpenHelper {
 
+    //this class have the dabase methods
+
+    //table names
     public static final String DATABASE_NAME = "SwiftTransport";
     public static final String TABLE_CLIENT = "table_client";
     public static final String TABLE_DRIVER = "table_driver";
@@ -57,7 +60,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String DISCRIPTION="discription";
     public static final String AMOUNT="amount";
 
-
+    //creating table
     public String create_client_table = "CREATE TABLE " + TABLE_CLIENT + "("+CLIENT_NAME+" VARCHAR2(50), "+OCCUPATION+" VARCHAR2(50), "+START_BUSINESS_DATE+" VARCHAR2(20))";
 
     public String create_driver_table = "CREATE TABLE " + TABLE_DRIVER + " ("+DRIVER_NAME+" VARCHAR2(50), "+DRIVER_ADDRESS+" VARCHAR2(100), "+DRIVER_SALARY+" VARCHAR2(20), "+DRIVER_JOINING_DATE+" VARCHAR2(20))";
@@ -70,12 +73,13 @@ public class DbHelper extends SQLiteOpenHelper {
     public String create_expenses_table = "CREATE TABLE " + TABLE_EXPENSES + " ("+DATE+" VARCHAR2(20) ," +
             ""+EXPENSES_TYPE+" VARCHAR2(30), "+DRIVER_NAME+" VARCHAR2(30), "+DISCRIPTION+" VARCHAR2(50), "+AMOUNT+" VARCHAR2(30))";
 
-
+    //constructor
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this._ctxt = context;
     }
 
+    //singeltone class
     static synchronized DbHelper getInstance(Context ctx) {
 
         if (dbInstance == null) {
@@ -84,6 +88,7 @@ public class DbHelper extends SQLiteOpenHelper {
         return dbInstance;
     }
 
+    //on create of database
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
@@ -116,6 +121,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
+    //onupgrade method
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.i("TAG","In onUpgrade db");

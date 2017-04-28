@@ -16,6 +16,7 @@ import com.swifttransport.R;
 
 public class Customtextviews extends TextView {
 
+    //custome Textview
     private CharSequence mText;
     private int mIndex;
     private long mDelay = 500; //Default 500ms delay

@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,14 +21,20 @@ import java.util.ArrayList;
 
 public class IncomeDetails_Adapter extends RecyclerView.Adapter<IncomeDetails_Adapter.ViewHolder> {
 
+    //arraylist
     ArrayList<IncomeDetails_DataSource> arrayList=new ArrayList<>();
     Context mCtx;
+    //for the animation
+    public static int lastPosition=-1;
 
+
+    //constructor
     public IncomeDetails_Adapter(Context context,ArrayList<IncomeDetails_DataSource> mylist){
         mCtx=context;
         arrayList=mylist;
     }
 
+    //create view
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -35,6 +43,7 @@ public class IncomeDetails_Adapter extends RecyclerView.Adapter<IncomeDetails_Ad
         return new ViewHolder(itemview);
     }
 
+    //bind view
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
@@ -45,9 +54,26 @@ public class IncomeDetails_Adapter extends RecyclerView.Adapter<IncomeDetails_Ad
         holder.txtfromlocation.setText(incomeDetails_dataSource.getFromLocatio());
         holder.txttolocation.setText(incomeDetails_dataSource.getToLocation());
         holder.txtvehicelno.setText(incomeDetails_dataSource.getVehicelNumber());
+        holder.txtstatus.setText(incomeDetails_dataSource.getPaidorNot());
 
+        //animation setting
+        //up_from_bottom and bottom from up in resouurce file
+        //in drawable
+        Animation animation = AnimationUtils.loadAnimation(mCtx,
+                (position > lastPosition) ? R.anim.up_from_bottom
+                        : R.anim.down_from_top);
+        holder.itemView.startAnimation(animation);
+        lastPosition = position;
     }
 
+    //clear animation
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.itemView.clearAnimation();
+    }
+
+    //total size
     @Override
     public int getItemCount() {
         return arrayList.size();
@@ -56,7 +82,7 @@ public class IncomeDetails_Adapter extends RecyclerView.Adapter<IncomeDetails_Ad
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView txtdate,txtclientname,txtfare,
-                txtfromlocation,txttolocation,txtvehicelno;
+                txtfromlocation,txttolocation,txtvehicelno,txtstatus;
         RelativeLayout mLayoutshow,mLayoutmore,mLayoutless;
 
         public ViewHolder(View itemView) {
@@ -68,6 +94,7 @@ public class IncomeDetails_Adapter extends RecyclerView.Adapter<IncomeDetails_Ad
             txtfromlocation=(TextView)itemView.findViewById(R.id.txt_daily_income_fromlocation);
             txttolocation=(TextView)itemView.findViewById(R.id.txt_daily_income_tolocation);
             txtvehicelno=(TextView)itemView.findViewById(R.id.txt_daily_income_vehicelno);
+            txtstatus=(TextView)itemView.findViewById(R.id.txt_daily_income_paidornot);
 
             mLayoutless=(RelativeLayout)itemView.findViewById(R.id.daily_income_details_less);
             mLayoutshow=(RelativeLayout)itemView.findViewById(R.id.daily_income_details_show);

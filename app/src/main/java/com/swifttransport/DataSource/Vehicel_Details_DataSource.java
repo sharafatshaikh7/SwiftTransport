@@ -6,6 +6,7 @@ package com.swifttransport.DataSource;
 
 public class Vehicel_Details_DataSource {
 
+    //gatter setter class
 
     String VehicelNo;
     String BuyingDate;
