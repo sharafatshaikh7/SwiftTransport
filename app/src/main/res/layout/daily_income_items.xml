@@ -167,7 +167,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:id="@+id/daily_income_details_show"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_below="@+id/daily_income_details_more"
                 android:layout_height="wrap_content">
 

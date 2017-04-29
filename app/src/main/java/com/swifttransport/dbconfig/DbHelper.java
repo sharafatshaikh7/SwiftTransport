@@ -67,7 +67,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public String create_vehicel_details_table = "CREATE TABLE " + TABLE_VEHICEL + " ("+BUYING_DATE+" VARCHAR2(20), "+VEHICEL_NUMBER+" VARCHAR2(20), "+INSURENCE_DATE+" VARCHAR2(20), "+PUC_DATE+" VARCHAR2(20))";
 
-    public String create_income_table = "CREATE TABLE " + TABLE_INCOME + " ( "+DATE+" VARCHAR2(20)," +
+    public String create_income_table = "CREATE TABLE " + TABLE_INCOME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, "+DATE+" VARCHAR2(20)," +
             ""+CLIENT_NAME+" VARCHAR2(30), "+FROM_LOCATION+" VARCHAR2(50), "+TO_LOCATION+" VARCHAR2(50), "+VEHICEL_NUMBER+" VARCHAR2(20),"+DRIVER_NAME+" VARCHAR2(30),"+FARE_RENT+" VARCHAR2(30), "+PAID_OR_NOT+" VARCHAR2(30))";
 
     public String create_expenses_table = "CREATE TABLE " + TABLE_EXPENSES + " ("+DATE+" VARCHAR2(20) ," +
